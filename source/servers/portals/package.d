@@ -13,19 +13,18 @@ public import uim.jsonbase;
 public import uim.entities;
 public import uim.entitybase;
 
-// cms library
-public import uim.cms;
+public import models.systems;
+public import models.portals;
+public import uim.portals;
 
-// server-cms packages
+
+public import layouts.tabler;
+
+// server-portals packages
 public import servers.portals.actions;
 public import servers.portals.apis;
 public import servers.portals.pages;
-public import servers.portals.settings;
-
-public import models.systems;
-public import models.portals;
-
-public import layouts.tabler;
+// public import servers.portals.settings;
 
 DAPPApplication serverPortals;
 string[size_t] errorMessages;
