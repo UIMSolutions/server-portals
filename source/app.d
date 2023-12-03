@@ -14,9 +14,9 @@ void main(string[] args) {
 	debug writeln("SetRouterDefault!()");
   mixin(SetRouterDefault!());
 
-debug writeln("Setting router");
+/* debug writeln("Setting router");
 router // Pages
-		.get("/portals", &uimportalsPage);
+		.get("/portals", &uimportalsPage); */
 
 /* 	mixin(AddRoutes!("router", "/portals/apis", "uimApis"));
 	mixin(AddRoutes!("router", "/portals/apps", "uimApps"));
@@ -32,19 +32,19 @@ router // Pages
 	mixin(AddRoutes!("router", "/portals/modules", "uimModules"));
 	mixin(AddRoutes!("router", "/portals/packages", "uimPackages")); */
 
-	router
+/* 	router
 		.get("/", &uimIndex)
 		.get("/login", &uimLoginPage)
 		.get("/login2", &uimLogin2Page)
 		.get("/register", &uimRegister)
 		.get("/logout", &uimLogout)
 		.get("/server", &uimServer)
-		.get("/sites", &uimSites);
+		.get("/sites", &uimSites); */
 
-	router // actions
+/* 	router // actions
 		.post("/login_action", &uimLoginAction)
 		.post("/login2_action", &uimLogin2Action)
-		.post("/sites/select", &uimSiteSelectAction);
+		.post("/sites/select", &uimSiteSelectAction); */
 
 	debug writeln("Create Database");
 	auto database = ETBBase.importDatabase(JSBFileBase("../../DATABASES/uim"));
@@ -77,13 +77,11 @@ router // Pages
 	}}}
 
 	debug writeln("database.tenantNames -> ", database.tenantNames);
-	foreach(tenant; database.tenantNames) {
-		debug writeln(tenant, " with ", database[tenant].collectionNames);
-	}
+	database.tenantNames.each!(tenantName => debug writeln(tenantName, " with ", database[tenantName].collectionNames));
 
 	debug writeln("server.database(database)");
   thisServer.database(database);
-	// server.rootPath(rootPath).registerApp(router); 
+		// server.rootPath(rootPath).registerApp(router); 
 
   mixin(SetHTTP!());
 	runApplication();
